@@ -22,14 +22,17 @@
             border-radius: 10px;
             display: inline-block;
             text-align: left;
+            max-width: 600px;
+            margin: auto;
+            box-sizing: border-box;
         }
 
         .form-group {
             margin-bottom: 15px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
             width: 100%;
+            box-sizing: border-box;
         }
 
         .form-group label {
@@ -37,14 +40,16 @@
             margin-right: 10px;
             text-align: right;
             font-weight: bold;
+            box-sizing: border-box;
         }
 
-        .form-group input[type="text"],
-        .form-group select {
-            width: calc(100% - 220px);
+        .form-group select,
+        .form-group input[type="text"] {
+            flex: 1;
             padding: 5px;
             border: none;
             border-radius: 5px;
+            box-sizing: border-box;
         }
 
         .form-group input[type="submit"] {
@@ -57,6 +62,7 @@
             border-radius: 5px;
             cursor: pointer;
             margin-top: 20px;
+            box-sizing: border-box;
         }
 
         .form-group input[type="submit"]:hover {
@@ -69,7 +75,6 @@
         <h1>ACCIDENT SEVERITY PREDICTION</h1>
         <form method="POST" action="{{ url_for('predict') }}">
 
-
             <div class="form-group">
                 <label>Age Band of Driver:</label>
                 <select name="Age_band_of_driver">
@@ -78,7 +83,6 @@
                     <option value="31-50">31-50</option>
                     <option value="Over 51">Over 51</option>
                     <option value="Unknown">Unknown</option>
-
                 </select>
             </div>
             <div class="form-group">
@@ -94,9 +98,8 @@
                 <select name="Road_surface_conditions">
                     <option value="Dry">Dry</option>
                     <option value="Wet or damp">Wet or damp</option>
-                    <option value="Snow">Pick up upto 10Q</option>
+                    <option value="Snow">Snow</option>
                     <option value="Flood over 3cm. deep">Flood over 3cm. deep</option>
-
                 </select>
             </div>
             <div class="form-group">
@@ -106,7 +109,6 @@
                     <option value="Darkness - lights lit">Darkness - lights lit</option>
                     <option value="Darkness - no lighting">Darkness - no lighting</option>
                     <option value="Darkness - lights unlit">Darkness - lights unlit</option>
-
                 </select>
             </div>
             <div class="form-group">
@@ -123,9 +125,9 @@
                     <option value="Other">Other</option>
                 </select>
             </div>
-            <div class="form_group">
-                <label>Type_of_collision</label>
-                <select name="Type_of_collision" >
+            <div class="form-group">
+                <label>Type_of_collision:</label>
+                <select name="Type_of_collision" size="5">
                     <option value="Vehicle with vehicle collision">Vehicle with vehicle collision</option>
                     <option value="Collision with roadside objects">Collision with roadside objects</option>
                     <option value="Collision with pedestrians">Collision with pedestrians</option>
@@ -135,25 +137,25 @@
                     <option value="Fall from vehicles">Fall from vehicles</option>
                     <option value="With Train">With Train</option>
                     <option value="Unknown">Unknown</option>
-                    <option value="Other">other</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Number of vehicles involved:</label>
                 <select name="Number_of_vehicles_involved">
-                    <option value=1>1 </option>
-                    <option value=2>2</option>
-                    <option value=3>3</option>
-                    <option value=4>4</option>
-                    <option value=5>5</option>
-                    <option value=6>6</option>
-                    <option value=7>7</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Casualty Class:</label>
                 <select name="Casualty_class">
-                    <option value="Driver or rider">Driver or rider </option>
+                    <option value="Driver or rider">Driver or rider</option>
                     <option value="Pedestrian">Pedestrian</option>
                     <option value="Passenger">Passenger</option>
                     <option value="na">na</option>
@@ -175,7 +177,6 @@
                     <option value="31-50">31-50</option>
                     <option value="Over 51">Over 51</option>
                     <option value="na">Unknown</option>
-
                 </select>
             </div>
             <div class="form-group">
@@ -186,7 +187,7 @@
                     <option value="3">3</option>
                     <option value="na">na</option>
                 </select>
-
+            </div>
             <div class="form-group">
                 <input type="submit" value="PREDICT">
             </div>
