@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('{{ url_for("static", filename="images/image_accident.jpg") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .form-group label {
+            min-width: 200px;
+            margin-right: 10px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group select {
+            width: calc(100% - 220px);
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>ACCIDENT SEVERITY PREDICTION</h1>
+        <form method="POST" action="{{ url_for('predict') }}">
+            <div class="form-group">
+                <label>Time:</label>
+                <input type="text" name="Time" placeholder="Enter time (e.g., 14:30)">
+            </div>
+            <div class="form-group">
+                <label>Day of Week:</label>
+                <select name="Day_of_week">
+                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Age Band of Driver:</label>
+                <select name="Age_band_of_driver">
+                    <option value="18-30">18-30</option>
+                    <option value="31-50">31-50</option>
+                    <option value="Over 51">Over 51</option>
+                    <option value="Unknown">Unknown</option>
+                    <option value="Under 18">Under 18</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Driving Experience:</label>
+                <select name="Driving_experience">
+                    <option value="Below 1 yr">Below 1 yr</option>
+                    <option value="1-2 yr">1-2 yr</option>
+                    <option value="2-5 yr">2-5 yr</option>
+                    <option value="5-10 yr">5-10 yr</option>
+                    <option value="Above 10 yr">Above 10 yr</option>
+                    <option value="No License">No License</option>
+                    <option value="Unknown">Unknown</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Type of Vehicle:</label>
+                <select name="Type_of_vehicle">
+                    <option value="Automobile">Automobile</option>
+                    <option value="Lorry (41-100Q)">Lorry (41-100Q)</option>
+                    <option value="Pick up upto 10Q">Pick up upto 10Q</option>
+                    <option value="Public (12 seats)">Public (12 seats)</option>
+                    <option value="Stationwagen">Stationwagen</option>
+                    <option value="Lorry (11-40Q)">Lorry (11-40Q)</option>
+                    <option value="Public (13-45 seats)">Public (13-45 seats)</option>
+                    <option value="Public (> 45 seats)">Public (> 45 seats)</option>
+                    <option value="Long lorry">Long lorry</option>
+                    <option value="Taxi">Taxi</option>
+                    <option value="Motorcycle">Motorcycle</option>
+                    <option value="Special vehicle">Special vehicle</option>
+                    <option value="Ridden horse">Ridden horse</option>
+                    <option value="Turbo">Turbo</option>
+                    <option value="Bajaj">Bajaj</option>
+                    <option value="Bicycle">Bicycle</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Area of Accident Occurred:</label>
+                <select name="Area_accident_occured">
+                    <option value="Office areas">Office areas</option>
+                    <option value="Residential areas">Residential areas</option>
+                    <option value="Church areas">Church areas</option>
+                    <option value="Industrial areas">Industrial areas</option>
+                    <option value="School areas">School areas</option>
+                    <option value="Recreational areas">Recreational areas</option>
+                    <option value="Outside rural areas">Outside rural areas</option>
+                    <option value="Hospital areas">Hospital areas</option>
+                    <option value="Market areas">Market areas</option>
+                    <option value="Rural village areas">Rural village areas</option>
+                    <option value="Unknown">Unknown</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Lanes or Medians:</label>
+                <select name="Lanes_or_Medians">
+                    <option value="Two-way (divided with broken lines road marking)">Two-way (divided with broken lines road marking)</option>
+                    <option value="Undivided Two way">Undivided Two way</option>
+                    <option value="Double carriageway (median)">Double carriageway (median)</option>
+                    <option value="One way">One way</option>
+                    <option value="Two-way (divided with solid lines road marking)">Two-way (divided with solid lines road marking)</option>
+                    <option value="Unknown">Unknown</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Casualty Class:</label>
+                <select name="Casualty_class">
+                    <option value="Driver or rider">Driver or rider </option>
+                    <option value="Pedestrian">Pedestrian</option>
+                    <option value="Passenger">Passenger</option>
+                    <option value="na">na</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cause of Accident:</label>
+                <select name="Cause_of_accident">
+                    <option value="No distancing">No distancing</option>
+                    <option value="Changing lane to the right">Changing lane to the right</option>
+                    <option value="Changing lane to the left">Changing lane to the left</option>
+                    <option value="Driving carelessly">Driving carelessly</option>
+                    <option value="No priority to vehicle">No priority to vehicle</option>
+                    <option value="Moving Backward">Moving Backward</option>
+                    <option value="No priority to pedestrian">No priority to pedestrian</option>
+                    <option value="Overtaking">Overtaking</option>
+                    <option value="Driving under the influence of drugs">Driving under the influence of drugs</option>
+                    <option value="Driving to the left">Driving to the left</option>
+                    <option value="Getting off the vehicle improperly">Getting off the vehicle improperly</option>
+                    <option value="Driving at high speed">Driving at high speed</option>
+                    <option value="Overturning">Overturning</option>
+                    <option value="Turnover">Turnover</option>
+                    <option value="Overspeed">Overspeed</option>
+                    <option value="Overloading">Overloading</option>
+                    <option value="Drunk driving">Drunk driving</option>
+                    <option value="Improper parking">Improper parking</option>
+                    <option value="Unknown">Unknown</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Types of Junction:</label>
+                <select name="Types_of_Junction">
+                    <option value="No junction">No junction</option>
+                    <option value="Y Shape">Y Shape</option>
+                    <option value="Crossing">Crossing</option>
+                    <option value="O Shape">O Shape</option>
+                    <option value="T Shape">T Shape</option>
+                    <option value="X Shape">X Shape</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="PREDICT">
+            </div>
+        </form>
+    </center>
+</body>
+</html>
