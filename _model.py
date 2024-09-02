@@ -75,7 +75,7 @@ x_new,y_new=sm.fit_resample(X,y)
 
 X_train,X_test,y_train,y_test=train_test_split(x_new,y_new,test_size=0.3,random_state=1)
 
-rf = RandomForestClassifier().predict()
+rf = RandomForestClassifier()
 
 rf.fit(X_train, y_train)
 y_pred = rf.predict(X_test)
