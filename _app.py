@@ -39,7 +39,7 @@ def predict():
 
     prediction_label = label_encoder.inverse_transform(new_pred)[0]
 
-    return render_template('result.html', prediction=prediction_label)
+    return render_template('result.html', prediction=prediction_label, theme=prediction_label.lower().replace(" ", "-"))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=False)

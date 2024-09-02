@@ -21,10 +21,10 @@
         width: 60%;
         margin: 100px auto;
         text-align: center;
+        border: 3px solid; /* Default border for the box */
     }
 
     h1 {
-        color: #FF5252;
         font-size: 45px;
         margin-bottom: 20px;
     }
@@ -35,27 +35,102 @@
         margin-bottom: 30px;
     }
 
+    .prediction-value {
+        margin-bottom: 40px;
+    }
+
     a {
         font-size: 22px;
-        color: #FF5252;
         text-decoration: none;
-        border: 2px solid #FF5252;
         padding: 10px 20px;
         border-radius: 5px;
         transition: background-color 0.3s, color 0.3s;
+        border: 2px solid;
+        color: inherit; /* Ensure text color inherits from the link's color */
     }
 
     a:hover {
+        color: #000000; /* Change text color to black on hover */
+    }
+
+    /* Default Theme */
+    body.default-theme h1 {
+        color: #FF5252;
+    }
+
+    body.default-theme a {
+        color: #FF5252;
+        border-color: #FF5252;
+    }
+
+    body.default-theme a:hover {
         background-color: #FF5252;
-        color: #000000;
+        color: #000000; /* Text color changes to black on hover */
+    }
+
+    /* Slight Injury */
+    body.slight-injury h1 {
+        color: #FFCC00; /* Dark Yellow */
+    }
+
+    body.slight-injury a {
+        color: #FFCC00;
+        border-color: #FFCC00;
+    }
+
+    body.slight-injury a:hover {
+        background-color: #FFCC00;
+        color: #000000; /* Text color changes to black on hover */
+    }
+
+    body.slight-injury .result-container {
+        border-color: #FFCC00; /* Dark Yellow */
+    }
+
+    /* Serious Injury */
+    body.serious-injury h1 {
+        color: #FF8C00; /* Orange */
+    }
+
+    body.serious-injury a {
+        color: #FF8C00;
+        border-color: #FF8C00;
+    }
+
+    body.serious-injury a:hover {
+        background-color: #FF8C00;
+        color: #000000; /* Text color changes to black on hover */
+    }
+
+    body.serious-injury .result-container {
+        border-color: #FF8C00; /* Orange */
+    }
+
+    /* Fatal Injury */
+    body.fatal-injury h1 {
+        color: #FF0000; /* Red */
+    }
+
+    body.fatal-injury a {
+        color: #FF0000;
+        border-color: #FF0000;
+    }
+
+    body.fatal-injury a:hover {
+        background-color: #FF0000;
+        color: #000000; /* Text color changes to black on hover */
+    }
+
+    body.fatal-injury .result-container {
+        border-color: #FF0000; /* Red */
     }
 </style>
 
-<body>
+<body class="{{ theme }}">
     <div class="result-container">
-        <h1>Prediction Result</h1>
+        <h2>Prediction Result</h2>
         <div class="prediction-value">
-            <h2>{{ prediction }}</h2>
+            <h1>{{ prediction }}</h1>
         </div>
         <a href="/">Go back to home page</a>
     </div>
